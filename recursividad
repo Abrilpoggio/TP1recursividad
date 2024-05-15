@@ -1,0 +1,37 @@
+22)
+def usar_la_fuerza(mochila, indice=0, objetos_sacados=0):
+    if indice >= len(mochila):
+        return False, objetos_sacados
+    
+    if mochila[indice] == "sable de luz":
+        return True, objetos_sacados + 1
+    
+    return usar_la_fuerza(mochila, indice + 1, objetos_sacados + 1)
+
+mochila = ["botella de agua", "comida", "sable de luz", "brújula", "libro"]
+encontrado, objetos_necesarios = usar_la_fuerza(mochila)
+
+if encontrado:
+    print("¡El Jedi encontró un sable de luz después de sacar", objetos_necesarios, "objetos de la mochila!")
+else:
+    print("El Jedi no encontró un sable de luz en la mochila.")
+    
+5)
+
+def romano_a_decimal(romano):
+    valores = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}
+    decimal = 0
+    
+    for i in range(len(romano) - 1, -1, -1):
+        valor_actual = valores[romano[i]]
+        
+        if i < len(romano) - 1 and valores[romano[i]] < valores[romano[i + 1]]:
+            decimal -= valor_actual
+        else:
+            decimal += valor_actual
+    
+    return decimal
+
+numero_romano = "MCMLXXIV"  
+print("El número decimal equivalente a", numero_romano, "es:", romano_a_decimal(numero_romano))
+
